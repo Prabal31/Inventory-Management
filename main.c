@@ -16,3 +16,17 @@ struct part {
     int on_hand;       // Quantity of the part currently in stock
     struct part *next; // Pointer to the next part in the linked list
 };
+
+
+
+// Function prototypes
+void insert(void);
+void search(void);
+void update(void);
+void print(void);
+void clear_input(void);
+void get_string_input(const char *prompt, char *str, int length);
+int get_int_input(const char *prompt);
+int is_valid_integer(const char *str);
+int is_valid_name(const char *str);
+struct part *find_part(int number);
