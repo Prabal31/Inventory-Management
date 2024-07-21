@@ -139,3 +139,14 @@ int is_valid_integer(const char *str) {
     }
     return 1; // Valid integer
 }
+
+// Function to check if a string is a valid part name
+int is_valid_name(const char *str) {
+    while (*str) {
+        if (isdigit(*str)) {
+            return 0; // Invalid name (contains numbers)
+        }
+        str++;
+    }
+    return 1; // Valid name (no numbers)
+}
