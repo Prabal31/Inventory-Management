@@ -233,3 +233,20 @@ void update(void) {
         printf("Error: Part not found.\n");
     }
 }
+
+// Function to print all parts in the inventory
+void print(void) {
+    struct part *p;
+
+    // Print a table header
+    printf("\nPart Inventory:\n");
+    printf("-------------------------------------------------------------\n");
+    printf("| %-10s | %-20s | %-15s |\n", "Part Number", "Part Name", "Quantity on Hand");
+    printf("-------------------------------------------------------------\n");
+
+    // Print each part's details
+    for (p = inventory; p != NULL; p = p->next)
+        printf("| %-10d | %-20s | %-15d |\n", p->number, p->name, p->on_hand);
+
+    printf("-------------------------------------------------------------\n");
+}
