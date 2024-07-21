@@ -103,3 +103,22 @@ int get_int_input(const char *prompt) {
         }
     }
 }
+// Function to get a valid string input from the user
+void get_string_input(const char *prompt, char *str, int length) {
+    while (1) {
+        printf("%s", prompt);
+        if (fgets(str, length, stdin) != NULL) {
+            str[strcspn(str, "\n")] = '\0'; // Remove trailing newline character
+
+            // Validate that the string does not contain numbers
+            if (is_valid_name(str)) {
+                return;
+            } else {
+                printf("Invalid input. Part name should not contain numbers.\n");
+            }
+        } else {
+            clear_input();
+            printf("Error reading input. Please try again.\n");
+        }
+    }
+}
