@@ -128,3 +128,14 @@ void clear_input(void) {
     while (getchar() != '\n')
         ; // Discard remaining characters in the input buffer
 }
+
+// Function to check if a string is a valid integer
+int is_valid_integer(const char *str) {
+    while (*str) {
+        if (!isdigit(*str)) {
+            return 0; // Invalid integer
+        }
+        str++;
+    }
+    return 1; // Valid integer
+}
