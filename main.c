@@ -150,3 +150,48 @@ int is_valid_name(const char *str) {
     }
     return 1; // Valid name (no numbers)
 }
+
+
+// Function to insert a new part into the inventory
+void insert(void) {
+    struct part *new_part, *prev, *cur;
+    int number;
+
+    // Allocate memory for the new part
+    new_part = (struct part *)malloc(sizeof(struct part));
+    if (new_part == NULL) {
+        printf("Error: Memory allocation failed.\n");
+        return;
+    }
+
+    // Get a valid part number from the user
+    number = get_int_input("Enter part number: ");
+
+    // Find the correct position to insert the new part in the list
+    for (cur = inventory, prev = NULL;
+         cur != NULL && number > cur->number;
+         prev = cur, cur = cur->next)
+        ;
+
+    // Check if the part already exists
+    if (cur != NULL && number == cur->number) {
+        printf("Error: Part with this number already exists.\n");
+        free(new_part);
+        return;
+    }
+
+    new_part->number = number;
+
+    // Get the name of the new part from the user
+    get_string_input("Enter part name: ", new_part->name, NAME_LEN + 1);
+
+    // Get the initial quantity on hand from the user
+    new_part->on_hand = get_int_input("Enter quantity on hand: ");
+
+    // Insert the new part in the correct position in the list
+    new_part->next = cur;
+    if (prev == NULL)
+        inventory = new_part;
+    else
+        prev->next = new_part;
+}
