@@ -30,3 +30,54 @@ int get_int_input(const char *prompt);
 int is_valid_integer(const char *str);
 int is_valid_name(const char *str);
 struct part *find_part(int number);
+
+
+// Inventory list starts empty
+struct part *inventory = NULL;
+
+// Main function
+int main(void) {
+    char code;
+
+    // Display a welcome message and menu options
+    printf("*****************************************\n");
+    printf("* Welcome to the Inventory Management System *\n");
+    printf("*****************************************\n");
+
+    // Continuously prompt user for operations until they choose to quit
+    while (1) {
+        printf("\n");
+        printf("Menu Options:\n");
+        printf("  i - Insert a new part\n");
+        printf("  s - Search for a part\n");
+        printf("  u - Update a part's quantity\n");
+        printf("  p - Print all parts\n");
+        printf("  q - Quit the program\n");
+        printf("Enter your choice: ");
+
+        scanf(" %c", &code); // Read user input for the operation code
+        clear_input(); // Clear any leftover input in the buffer
+        code = tolower(code); // Convert the input to lowercase for consistency
+
+        // Perform the action based on the user input
+        switch (code) {
+        case 'i':
+            insert();
+            break;
+        case 's':
+            search();
+            break;
+        case 'u':
+            update();
+            break;
+        case 'p':
+            print();
+            break;
+        case 'q':
+            printf("Exiting program. Goodbye!\n");
+            return 0; // Exit the program
+        default:
+            printf("Error: Invalid operation code. Please try again.\n");
+        }
+    }
+}
