@@ -214,3 +214,22 @@ void search(void) {
         printf("Error: Part not found.\n");
     }
 }
+
+
+// Function to update the quantity of a part
+void update(void) {
+    int number, change;
+    struct part *p;
+
+    number = get_int_input("Enter part number to update: ");
+
+    p = find_part(number);
+    if (p != NULL) {
+        // Get the change in quantity and update the part's quantity
+        change = get_int_input("Enter change in quantity:");
+        p->on_hand = change;
+        printf("Part quantity updated successfully.\n");
+    } else {
+        printf("Error: Part not found.\n");
+    }
+}
