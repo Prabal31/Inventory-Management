@@ -122,3 +122,9 @@ void get_string_input(const char *prompt, char *str, int length) {
         }
     }
 }
+
+// Function to clear the input buffer
+void clear_input(void) {
+    while (getchar() != '\n')
+        ; // Discard remaining characters in the input buffer
+}
