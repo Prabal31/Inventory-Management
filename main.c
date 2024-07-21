@@ -81,3 +81,25 @@ int main(void) {
         }
     }
 }
+
+// Function to get a valid integer input from the user
+int get_int_input(const char *prompt) {
+    char buffer[100]; // Buffer to hold user input
+    int value;
+
+    while (1) {
+        printf("%s", prompt);
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            buffer[strcspn(buffer, "\n")] = '\0'; // Remove trailing newline character
+            if (is_valid_integer(buffer)) {
+                value = atoi(buffer); // Convert the string to an integer
+                return value;
+            } else {
+                printf("Invalid input. Please enter a valid integer.\n");
+            }
+        } else {
+            clear_input();
+            printf("Error reading input. Please try again.\n");
+        }
+    }
+}
