@@ -195,3 +195,22 @@ void insert(void) {
     else
         prev->next = new_part;
 }
+
+// Function to search for a part by its number
+void search(void) {
+    int number;
+    struct part *p;
+
+    number = get_int_input("Enter part number to search: ");
+
+    p = find_part(number);
+    if (p != NULL) {
+        // Display the details of the found part
+        printf("\nPart found:\n");
+        printf("  Part Number: %d\n", p->number);
+        printf("  Part Name: %s\n", p->name);
+        printf("  Quantity on Hand: %d\n", p->on_hand);
+    } else {
+        printf("Error: Part not found.\n");
+    }
+}
