@@ -250,3 +250,14 @@ void print(void) {
 
     printf("-------------------------------------------------------------\n");
 }
+
+
+// Function to find a part by its number
+struct part *find_part(int number) {
+    struct part *p;
+
+    // Traverse the list to find the part with the specified number
+    for (p = inventory; p != NULL && p->number != number; p = p->next)
+        ;
+    return p; // Return the found part or NULL if not found
+}
